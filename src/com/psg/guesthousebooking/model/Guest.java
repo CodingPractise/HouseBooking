@@ -6,7 +6,7 @@ package com.psg.guesthousebooking.model;
  *
  */
 public class Guest {
-	private String addressDetails;
+	private String address;
 	private String firstName;
 	private int guestId;
 	private String lastName;
@@ -17,8 +17,28 @@ public class Guest {
 		this.guestId = guestId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.addressDetails = addressDetails;
+		this.address = addressDetails;
 		this.mobileNo = mobileNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public int getGuestId() {
+		return guestId;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public long getMobileNo() {
+		return mobileNo;
 	}
 	
 	

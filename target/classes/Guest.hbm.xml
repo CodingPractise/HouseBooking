@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="Guest" table="t_Guest">      
+      <meta attribute = "class-description">
+         This class contains guest details 
+      </meta>      
+      <id name="guestId" type = "int" column="c_guest_id">
+         <generator class="native"/>
+      </id>      
+      <property name = "firstName" column = "c_first_name" type = "string"/>
+      <property name = "lastName" column = "c_last_name" type = "string"/>
+      <property name = "address" column = "c_address" type = "String"/>
+      <property name = "mobileNo" column = "c_mobile_no" type = "long"/>      
+   </class>
+</hibernate-mapping>

@@ -4,5 +4,4 @@ import java.util.List;
 
 public class GuestHouse {	
 	private List<Room> rooms;	
-	
 }

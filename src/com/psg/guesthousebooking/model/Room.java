@@ -10,5 +10,14 @@ public class Room {
 		this.roomtype = roomtype;
 		this.floorId = floorId;
 	}
+	public int getFloorId() {
+		return floorId;
+	}
+	public int getRoomId() {
+		return roomId;
+	}
+	public RoomType getRoomtype() {
+		return roomtype;
+	}
 	
 }
