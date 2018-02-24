@@ -7,10 +7,10 @@ package com.psg.guesthousebooking.model;
  *
  */
 public class ReservedRooms {
-	private int roomId;
 	private int reservationId;
-	private ReservationStatus status;
-	public ReservedRooms(int roomId, int reservationId, ReservationStatus status) {
+	private int roomId;
+	private RoomReservationStatus status;
+	public ReservedRooms(int roomId, int reservationId, RoomReservationStatus status) {
 		super();
 		this.roomId = roomId;
 		this.reservationId = reservationId;

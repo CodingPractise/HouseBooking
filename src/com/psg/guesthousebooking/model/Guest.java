@@ -6,10 +6,10 @@ package com.psg.guesthousebooking.model;
  *
  */
 public class Guest {
-	private int guestId;
-	private String firstName;
-	private String lastName;
 	private String addressDetails;
+	private String firstName;
+	private int guestId;
+	private String lastName;
 	private long mobileNo;
 	
 	public Guest(int guestId, String firstName, String lastName, String addressDetails, long mobileNo) {

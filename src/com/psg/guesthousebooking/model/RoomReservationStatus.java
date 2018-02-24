@@ -4,6 +4,6 @@ package com.psg.guesthousebooking.model;
  * @author Rajasri
  *
  */
-public enum ReservationStatus {
-	CANCELLED, CONFIRMED, DENIED, RESERVED
+public enum RoomReservationStatus {
+	CANCELLED, CONFIRMED, RESERVED
 }
