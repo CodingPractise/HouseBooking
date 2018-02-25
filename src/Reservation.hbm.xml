@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.psg.guesthousebooking.model.Reservation" table="t_reservation">      
+      <id name="reservationId" type="int" column="c_reservation_id">
+         <generator class="identity"/>
+      </id>      
+      <property name = "guestName" column = "c_guest_name" type = "string"/>
+      <property name = "bookedFrom" column = "c_booked_from" type = "date"/>
+      <property name = "bookedTo" column = "c_booked_to" type = "date"/>
+      <property name = "fromTime" column = "c_from_time" type = "time"/>
+      <property name = "toTime" column = "c_to_time" type = "time"/>
+      <property name="status" column="c_status">
+    		<type name="org.hibernate.type.EnumType">
+        		<param name="enumClass">com.psg.guesthousebooking.model.ReservationStatus</param>
+    		</type>
+	  </property>
+      <property name = "bookedBy" column = "c_booked_by" type = "string"/>
+      <property name = "approvedBy" column = "c_approved_by" type = "string"/>    
+   </class>
+</hibernate-mapping>

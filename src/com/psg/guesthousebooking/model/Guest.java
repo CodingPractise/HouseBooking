@@ -6,15 +6,15 @@ package com.psg.guesthousebooking.model;
  *
  */
 public class Guest {
+	
 	private String address;
 	private String firstName;
 	private int guestId;
 	private String lastName;
 	private long mobileNo;
 	
-	public Guest(int guestId, String firstName, String lastName, String addressDetails, long mobileNo) {
+	public Guest(String firstName, String lastName, String addressDetails, long mobileNo) {
 		super();
-		this.guestId = guestId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = addressDetails;

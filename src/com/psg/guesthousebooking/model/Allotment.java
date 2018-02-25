@@ -11,54 +11,58 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Rajasri
  *
  */
-@XmlRootElement
 public class Allotment {
 	
 	private static int occupancyCounter = 1;
 	
 	private Date checkIn;
 	private Date checkOut;
-	private int occupancyId;
+	private Date checkInTime;
+	private Date checkOutTime;
+	private int allotmentId;
 	private int reservationId;
-	private int roomId;
-	
 		
 	public Allotment() {
 		super();
 	}
 
-	public Allotment(Date checkIn, Date checkOut, int reservationId, int roomId) {
+	public Allotment(Date checkIn, Date checkOut, Date checkInTime, Date checkOutTime, int reservationId) {
 		super();
-		this.occupancyId = occupancyCounter++;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.allotmentId = occupancyCounter++;
 		this.reservationId = reservationId;
-		this.roomId = roomId;
 	}
 
-	@XmlElement
 	public Date getCheckIn() {
 		return checkIn;
 	}
 
-	@XmlElement
 	public Date getCheckOut() {
 		return checkOut;
 	}
 	
-	@XmlElement
 	public int getOccupancyId() {
-		return occupancyId;
+		return allotmentId;
 	}
 
-	@XmlElement
 	public int getReservationId() {
 		return reservationId;
 	}
 
-	@XmlElement
-	public int getRoomId() {
-		return roomId;
+	public Date getCheckInTime() {
+		return checkInTime;
 	}
+
+	public Date getCheckOutTime() {
+		return checkOutTime;
+	}
+
+	public int getAllotmentId() {
+		return allotmentId;
+	}
+	
 	
 }

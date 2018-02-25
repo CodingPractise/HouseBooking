@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.psg.guesthousebooking.model.Room" table="t_room">      
+      <id name="roomId" type="int" column="c_room_id">
+         <generator class="identity"/>
+      </id>      
+      <property name = "floorId" column = "c_floor_id" type = "int"/>
+      <property name="roomType" column="c_room_type">
+    		<type name="org.hibernate.type.EnumType">
+        		<param name="enumClass">com.psg.guesthousebooking.model.RoomType</param>
+    		</type>
+	  </property>    
+   </class>
+</hibernate-mapping>

@@ -5,5 +5,5 @@ package com.psg.guesthousebooking.model;
  *
  */
 public enum ReservationStatus {
-	CANCELLED, CONFIRMED, DENIED, RESERVED
+	CANCELLED, CONFIRMED, DENIED, RESERVED, CHECKEDOUT
 }

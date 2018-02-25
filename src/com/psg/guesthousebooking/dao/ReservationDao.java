@@ -1,10 +1,13 @@
 package com.psg.guesthousebooking.dao;
 
+import java.sql.Time;
+import java.util.Date;
+
 import com.psg.guesthousebooking.model.RoomType;
 
 public interface ReservationDao {
-	boolean addReservation(int noOfRooms, RoomType roomType, String fromDate, String toDate,String bookedBy);
-	boolean updateReservation(int reservationId, long mobileNo);
-	boolean updateReservation(int reservationId, long mobileNo, String address, String guestName);
-	boolean cancelReservation(long mobileNumber, String fromDate, String toDate, int noOfRooms);
+	boolean cancelReservation(String guestName, Date fromDate, Date toDate, int noOfRooms);
+
+	boolean addReservation(int noOfRooms, RoomType roomType, Date fromDate, Date toDate, Time fromTime, Time toTime,
+			String bookedBy, String guestName, String approvedBy);
 }
