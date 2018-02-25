@@ -13,6 +13,7 @@
       <property name = "bookedTo" column = "c_booked_to" type = "date"/>
       <property name = "fromTime" column = "c_from_time" type = "time"/>
       <property name = "toTime" column = "c_to_time" type = "time"/>
+      <property name = "reservationDate" column = "c_reservation_date" type = "date"/>
       <property name="status" column="c_status">
     		<type name="org.hibernate.type.EnumType">
         		<param name="enumClass">com.psg.guesthousebooking.model.ReservationStatus</param>

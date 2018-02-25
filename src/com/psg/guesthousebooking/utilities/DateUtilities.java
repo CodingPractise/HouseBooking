@@ -13,7 +13,7 @@ public class DateUtilities {
 	 */
 	public static String getTodaysDate()
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = new Date();		
 		return dateFormat.format(date);
 	}

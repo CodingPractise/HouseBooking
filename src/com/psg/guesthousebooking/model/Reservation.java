@@ -50,7 +50,7 @@ public class Reservation {
 	}
 
 	@XmlElement
-	public int getReservationId() {
+	private int getReservationId() {
 		return reservationId;
 	}
 	
@@ -64,27 +64,27 @@ public class Reservation {
 		return bookedTo;
 	}
 	
-	public String getGuestName() {
+	private String getGuestName() {
 		return guestName;
 	}
 
 	@XmlTransient
-	public Date getReservationDate() {
+	private Date getReservationDate() {
 		return reservationDate;
 	}
 
 	@XmlElement
-	public ReservationStatus getStatus() {
+	private ReservationStatus getStatus() {
 		return status;
 	}
 
 	@XmlTransient
-	public String getBookedBy() {
+	private String getBookedBy() {
 		return bookedBy;
 	}
 	
 	@XmlTransient
-	public String getApprovedBy() {
+	private String getApprovedBy() {
 		return approvedBy;
 	}
 
@@ -92,40 +92,40 @@ public class Reservation {
 		this.status = status;
 	}
 
-	public void setBookedFrom(Date bookedFrom) {
+	private void setBookedFrom(Date bookedFrom) {
 		this.bookedFrom = bookedFrom;
 	}
 
-	public void setBookedTo(Date bookedTo) {
+	private void setBookedTo(Date bookedTo) {
 		this.bookedTo = bookedTo;
 	}
 
-	public void setGuestName(String guestName) {
+	private void setGuestName(String guestName) {
 		this.guestName = guestName;
 	}
 
-	public void setGuestId(int guestId) {
+	private void setGuestId(int guestId) {
 		this.guestId = guestId;
 	}
 
-	public void setReservationDate(Date reservationDate) {
+	private void setReservationDate(Date reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 
-	public void setReservationId(int reservationId) {
+	private void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
 
-	public void setBookedBy(String bookedBy) {
+	private void setBookedBy(String bookedBy) {
 		this.bookedBy = bookedBy;
 	}
 
-	public void setApprovedBy(String approvedBy) {
+	private void setApprovedBy(String approvedBy) {
 		this.approvedBy = approvedBy;
 	}
 
 	@XmlElement
-	public int getRoomId() {
+	private int getRoomId() {
 		return roomId;
 	}
 
@@ -134,23 +134,23 @@ public class Reservation {
 	}
 
 	@XmlTransient
-	public int getGuestId() {
+	private int getGuestId() {
 		return guestId;
 	}
 
-	public Time getFromTime() {
+	private Time getFromTime() {
 		return fromTime;
 	}
 
-	public void setFromTime(Time fromTime) {
+	private void setFromTime(Time fromTime) {
 		this.fromTime = fromTime;
 	}
 
-	public Time getToTime() {
+	private Time getToTime() {
 		return toTime;
 	}
 
-	public void setToTime(Time toTime) {
+	private void setToTime(Time toTime) {
 		this.toTime = toTime;
 	}
 	

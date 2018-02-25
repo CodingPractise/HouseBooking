@@ -1,6 +1,7 @@
 package com.psg.guesthousebooking.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Used to link Reservation, Room and actual check in date and checkout date
@@ -10,27 +11,26 @@ import java.util.Date;
  */
 public class Allotment {
 	
-	private static int occupancyCounter = 1;
-	
+	private int allotmentId;
 	private Date checkIn;
 	private Date checkOut;
 	private Date checkInTime;
 	private Date checkOutTime;
-	private int allotmentId;
 	private int reservationId;
+	private List<RoomService> services;
 		
 	public Allotment() {
 		super();
 	}
 
-	public Allotment(Date checkIn, Date checkOut, Date checkInTime, Date checkOutTime, int reservationId) {
+	public Allotment(Date checkIn, Date checkOut, Date checkInTime, Date checkOutTime, int reservationId, List<RoomService> services) {
 		super();
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.checkInTime = checkInTime;
 		this.checkOutTime = checkOutTime;
-		this.allotmentId = occupancyCounter++;
 		this.reservationId = reservationId;
+		this.services = services;
 	}
 
 	public Date getCheckIn() {
@@ -61,5 +61,9 @@ public class Allotment {
 		return allotmentId;
 	}
 	
+	public List<RoomService> getServices()
+	{
+		return services;
+	}
 	
 }
