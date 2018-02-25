@@ -10,6 +10,7 @@ import com.psg.guesthousebooking.service.RoomService;
 @Path("/Rooms")
 public class RoomController {
 	RoomService roomService;
+	
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean createRooms()
@@ -17,4 +18,6 @@ public class RoomController {
 		roomService  = new RoomService();
 		return roomService.createRooms();
 	}
+	
+	
 }

@@ -2,9 +2,6 @@ package com.psg.guesthousebooking.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * Used to link Reservation, Room and actual check in date and checkout date
  * Collection of this class can be used directly to generate the occupancy report for a given date 

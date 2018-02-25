@@ -11,7 +11,6 @@
 	    <property name="hibernate.hbm2ddl.auto">update</property>	    
 	    <property name="hibernate.show_sql">true</property>
 		<mapping resource="Reservation.hbm.xml" />
-		<mapping resource="RoomReservation.hbm.xml" />
 		<mapping resource="Room.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

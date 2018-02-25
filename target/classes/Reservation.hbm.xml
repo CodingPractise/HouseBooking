@@ -19,6 +19,8 @@
     		</type>
 	  </property>
       <property name = "bookedBy" column = "c_booked_by" type = "string"/>
-      <property name = "approvedBy" column = "c_approved_by" type = "string"/>    
+      <property name = "approvedBy" column = "c_approved_by" type = "string"/>  
+      <property name = "roomId" column="c_room_id" type="int" />  
+     
    </class>
 </hibernate-mapping>
