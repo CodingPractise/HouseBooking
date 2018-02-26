@@ -9,34 +9,45 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement(name="occupancy_report")
 public class OccupancyReport {
 	
-	private OccupancyReport occupancy;
-	
 	private List<Reservation> reservations;
 	
-	private float occupancyPercentage;
+	private double occupancyPercentage;
+	private long totalNoOfRooms;
+	private double noOfDays;
 	
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-	public void setOccupancyPercentage(float occupancyPercentage) {
+	public void setOccupancyPercentage(double occupancyPercentage) {
 		this.occupancyPercentage = occupancyPercentage;
 	}
-	
 	
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
 	
 	@XmlElement(name="occupancy_percentage")
-	public double getOccupancyPercentage() {
+	public String getOccupancyPercentage() {		
+		return String.format("%.2f", occupancyPercentage);
+	}
+
+	public double getOccupancyPercentageAsNumber() {		
 		return occupancyPercentage;
 	}
-	
-	@XmlTransient
-	public OccupancyReport getInstance()
-	{
-		if(occupancy == null)
-			occupancy = new OccupancyReport();
-		return occupancy;
+
+	public long getTotalNoOfRooms() {
+		return totalNoOfRooms;
 	}
+	public void setTotalNoOfRooms(long totalNoOfRooms) {
+		this.totalNoOfRooms = totalNoOfRooms;
+	}
+	public double getNoOfDays() {
+		return noOfDays;
+	}
+	public void setNoOfDays(double noOfDays) {
+		
+		this.noOfDays = noOfDays;
+	}
+
+	
 }

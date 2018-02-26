@@ -50,7 +50,7 @@ public class Reservation {
 	}
 
 	@XmlElement
-	private int getReservationId() {
+	public int getReservationId() {
 		return reservationId;
 	}
 	
@@ -138,21 +138,32 @@ public class Reservation {
 		return guestId;
 	}
 
-	private Time getFromTime() {
+//	@XmlElement
+//	public String getFromTime() {
+//		return fromTime.toString();
+//	}
+	
+	@XmlElement
+	public Time getFromTime() {
 		return fromTime;
 	}
 
-	private void setFromTime(Time fromTime) {
+	public void setFromTime(Time fromTime) {
 		this.fromTime = fromTime;
 	}
 
-	private Time getToTime() {
+//	@XmlElement
+//	public String getToTime() {
+//		return toTime.toString();
+//	}
+	
+	@XmlElement
+	public Time getToTime() {
 		return toTime;
 	}
 
 	private void setToTime(Time toTime) {
 		this.toTime = toTime;
 	}
-	
-	
+
 } 

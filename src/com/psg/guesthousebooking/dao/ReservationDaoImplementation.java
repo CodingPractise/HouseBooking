@@ -4,9 +4,10 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -14,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import com.psg.guesthousebooking.model.Reservation;
 import com.psg.guesthousebooking.model.ReservationStatus;
 import com.psg.guesthousebooking.model.RoomType;
+import com.psg.guesthousebooking.utilities.DateUtilities;
 import com.psg.guesthousebooking.utilities.HibernateUtilities;
 
 
@@ -22,21 +24,26 @@ public class ReservationDaoImplementation implements ReservationDao{
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Reservation> getReservations(Date bookFrom, Date bookTo)
 	{
-		Session session = HibernateUtilities.getSessionFactory().openSession();
-	    
+		try(Session session = HibernateUtilities.getSessionFactory().openSession())
+		{	    
 	    Criteria reservation = session.createCriteria(Reservation.class);
 	    reservation.add(Restrictions.between("bookedFrom", bookFrom, bookTo));
 	    reservation.add(Restrictions.between("bookedTo", bookFrom, bookTo));
 	    reservation.add(Restrictions.ne("status", ReservationStatus.DENIED));
 	    reservation.add(Restrictions.ne("status", ReservationStatus.CANCELLED));
-    
+        
 	    return reservation.list();
+		}
 
 	}
 
 	@Override
 	public boolean addReservation(RoomType roomType, Date fromDate,Date toDate,Time fromTime, Time toTime, String bookedBy, String guestName, String approvedBy) {
 
+		if(!validateReservationParameters(fromDate, toDate, fromTime, toTime, bookedBy, guestName, approvedBy))
+		{
+			return false;
+		}
 		Reservation reservation = new Reservation(fromDate, toDate, fromTime, toTime, guestName, bookedBy, approvedBy);
 
 		boolean reservationStatus = false;
@@ -54,9 +61,7 @@ public class ReservationDaoImplementation implements ReservationDao{
 	        session.save(reservation);
 	        tx.commit();
 	        if(roomId > -1)
-	        {
 	        	reservationStatus = true;
-	        }
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();	         
 	      } finally {
@@ -67,7 +72,12 @@ public class ReservationDaoImplementation implements ReservationDao{
 
 	@Override
 	public boolean cancelReservation(String guestName, Date fromDate, Date toDate) {
-		// TODO Auto-generated method stub
+		
+		if(!validateCancellationParameters(fromDate, toDate, guestName))
+			return false;
+		
+		boolean cancellationStatus = true;
+		
 		List<Reservation> reservation = getReservation(guestName, fromDate, toDate);
 		if(null != reservation && reservation.size() == 1 )
 		{
@@ -84,6 +94,7 @@ public class ReservationDaoImplementation implements ReservationDao{
 	        
 		        return true;
 		      } catch (HibernateException e) {
+		    	 cancellationStatus = false;
 		         if (tx!=null) tx.rollback();
 		      } finally {
 		         session.close(); 
@@ -91,13 +102,13 @@ public class ReservationDaoImplementation implements ReservationDao{
 			
 			
 		}
-		return false;
+		return cancellationStatus;
 	}
 	
 	private List<Reservation> getReservation(String guestName, Date fromDate, Date toDate)
 	{
-		Session session = HibernateUtilities.getSessionFactory().openSession();
-	    
+		try(Session session = HibernateUtilities.getSessionFactory().openSession())
+		{
 	    Criteria reservation = session.createCriteria(Reservation.class);
 	    reservation.add(Restrictions.between("bookedFrom", fromDate, fromDate));
 	    reservation.add(Restrictions.between("bookedTo", toDate, toDate));
@@ -105,6 +116,7 @@ public class ReservationDaoImplementation implements ReservationDao{
 	    reservation.add(Restrictions.eq("guestName", guestName));
    
 	    return reservation.list();
+		}
 	}
 
 	private int getRoom(RoomType roomType, Date fromDate,Date toDate)
@@ -127,22 +139,54 @@ public class ReservationDaoImplementation implements ReservationDao{
 								+ ")"
 							+ ")");
 		
-		query.setDate("fromDate", fromDate);
-		query.setDate("toDate", toDate);
+		query.setParameter("fromDate", fromDate);
+		query.setParameter("toDate", toDate);
 		query.setParameter("rType", roomType);
 		query.setParameter("confirmed", ReservationStatus.CONFIRMED);
 		query.setParameter("reserved", ReservationStatus.RESERVED);
 		
 		query.setMaxResults(1);
 		
-		List<Integer> result = query.list();
-		if(result.size() >= 1)
+		List<Object> result = query.getResultList();
+		
+		session.close();
+		
+		if(null != result && !result.isEmpty())
 		{
-			for (Integer integer : result) {
-				return integer;
-			}
-		}		
+			return (int)result.get(0);
+		}
+		
+		
 		return -1;
+	}
+	
+	private boolean validateReservationParameters(Date fromDate,Date toDate,Time fromTime, Time toTime, String bookedBy, String guestName, String approvedBy)
+	{
+//		System.out.println(null != fromDate);
+//		System.out.println(null != toDate);
+//		System.out.println(fromDate.compareTo(toDate) <= 0 );
+//		System.out.println(null != fromTime);
+//		System.out.println(null != toTime);
+//		System.out.println(DateUtilities.isCurrentOrFutureDate(fromDate, fromTime, new Date()));
+//		System.out.println((null != guestName && !guestName.isEmpty()));
+//		System.out.println((null != bookedBy && !bookedBy.isEmpty()));
+//		System.out.println(null != approvedBy && !approvedBy.isEmpty());
+		
+
+		return (null != fromDate && null != toDate && fromDate.compareTo(toDate) <= 0 &&				
+				null != fromTime && null != toTime && DateUtilities.isCurrentOrFutureDate(fromDate, fromTime, new Date()) &&
+				(null != guestName && !guestName.isEmpty()) &&
+				(null != bookedBy && !bookedBy.isEmpty()) &&
+				(null != approvedBy && !approvedBy.isEmpty()));		
+		
+	}
+	
+	
+	private boolean validateCancellationParameters(Date fromDate,Date toDate, String guestName)
+	{
+		return (null != fromDate && null != toDate && fromDate.compareTo(toDate) <= 0 && 
+				(null != guestName && !guestName.isEmpty()));
+		
 	}
 
 }

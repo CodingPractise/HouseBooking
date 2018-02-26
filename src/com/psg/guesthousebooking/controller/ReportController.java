@@ -3,6 +3,7 @@ package com.psg.guesthousebooking.controller;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.psg.guesthousebooking.model.OccupancyReport;
@@ -15,9 +16,10 @@ public class ReportController {
 	@GET
 	@Path("/OccupancyReport")
 	@Produces(MediaType.APPLICATION_XML)
-	public OccupancyReport getRoom()
+	public OccupancyReport getRoom(@QueryParam("from_date") String fromDate,
+	        @QueryParam("to_date") String toDate)
 	{
-		return new ReportService().fetchOccupancy(DateUtilities.getDateTime("02/01/2018"), DateUtilities.getDateTime("02/25/2018"));
+		return new ReportService().fetchOccupancy(DateUtilities.getDateTime(fromDate), DateUtilities.getDateTime(toDate));
 		
 	}	
 }
