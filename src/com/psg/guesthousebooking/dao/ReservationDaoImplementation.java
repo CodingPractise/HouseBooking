@@ -162,16 +162,6 @@ public class ReservationDaoImplementation implements ReservationDao{
 	
 	private boolean validateReservationParameters(Date fromDate,Date toDate,Time fromTime, Time toTime, String bookedBy, String guestName, String approvedBy)
 	{
-//		System.out.println(null != fromDate);
-//		System.out.println(null != toDate);
-//		System.out.println(fromDate.compareTo(toDate) <= 0 );
-//		System.out.println(null != fromTime);
-//		System.out.println(null != toTime);
-//		System.out.println(DateUtilities.isCurrentOrFutureDate(fromDate, fromTime, new Date()));
-//		System.out.println((null != guestName && !guestName.isEmpty()));
-//		System.out.println((null != bookedBy && !bookedBy.isEmpty()));
-//		System.out.println(null != approvedBy && !approvedBy.isEmpty());
-		
 
 		return (null != fromDate && null != toDate && fromDate.compareTo(toDate) <= 0 &&				
 				null != fromTime && null != toTime && DateUtilities.isCurrentOrFutureDate(fromDate, fromTime, new Date()) &&

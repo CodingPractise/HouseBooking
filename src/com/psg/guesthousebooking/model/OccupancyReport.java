@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="occupancy_report")
 public class OccupancyReport {
@@ -27,7 +26,7 @@ public class OccupancyReport {
 	}
 	
 	@XmlElement(name="occupancy_percentage")
-	public String getOccupancyPercentage() {		
+	public String getOccupancyPercentage() {
 		return String.format("%.2f", occupancyPercentage);
 	}
 
@@ -35,19 +34,20 @@ public class OccupancyReport {
 		return occupancyPercentage;
 	}
 
+	@XmlElement(name="available_rooms_in_property")
 	public long getTotalNoOfRooms() {
 		return totalNoOfRooms;
 	}
 	public void setTotalNoOfRooms(long totalNoOfRooms) {
 		this.totalNoOfRooms = totalNoOfRooms;
 	}
+	
+	@XmlElement(name="reporting_days")
 	public double getNoOfDays() {
 		return noOfDays;
 	}
 	public void setNoOfDays(double noOfDays) {
 		
 		this.noOfDays = noOfDays;
-	}
-
-	
+	}	
 }

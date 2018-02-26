@@ -1,6 +1,21 @@
-Queries
-http://localhost:8080/GuestHouseBookingApp/rest/Reports/OccupancyReport?from_date=01/01/2018&to_date=01/10/2018
-GET
+Queries:
+--------
 
-http://localhost:8080/GuestHouseBookingApp/rest/Reservation/Reserve?frdt=02/26/2018&todt=02/28/2018&frhr=9&frmin=0&frsec=0&
+To get the occupancy report between a duration:
+-------------------------------------------------
+GET: http://localhost:8080/GuestHouseBookingApp/rest/Reports/OccupancyReport?from_date=01/01/2018&to_date=01/10/2018
+Accept: Application/XML
+
+To reserve a room
+------------------
+PUT: http://localhost:8080/GuestHouseBookingApp/rest/Reservation/Reserve?frdt=03/15/2018&todt=03/17/2018&frhr=15&frmin=0&frsec=0&
 tohr=9&tomin=0&tosec=0&bkdby=Rajasri&gname=alice&rtype=AC&staff=op1
+
+
+To cancel a room
+----------------
+POST: http://localhost:8080/GuestHouseBookingApp/rest/Reservation/Cancel?frdt=03/04/2018&todt=03/07/2018&gname=Williams
+
+For 10 rooms creation:
+----------------------
+PUT: http://localhost:8080/GuestHouseBookingApp/rest/Rooms

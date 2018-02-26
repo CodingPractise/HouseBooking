@@ -2,7 +2,6 @@ package com.psg.guesthousebooking.controller;
 
 import java.sql.Time;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -14,6 +13,11 @@ import com.psg.guesthousebooking.model.RoomType;
 import com.psg.guesthousebooking.service.ReservationService;
 import com.psg.guesthousebooking.utilities.DateUtilities;
 
+/**
+ * To handle Room reservation and cancellation
+ * @author Rajasri
+ *
+ */
 @Path("/Reservation")
 public class ReservationController {
 	

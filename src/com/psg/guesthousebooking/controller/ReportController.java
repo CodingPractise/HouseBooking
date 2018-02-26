@@ -10,6 +10,11 @@ import com.psg.guesthousebooking.model.OccupancyReport;
 import com.psg.guesthousebooking.service.ReportService;
 import com.psg.guesthousebooking.utilities.DateUtilities;
 
+/**
+ * To handle report related requests
+ * @author Rajasri
+ *
+ */
 @Path("/Reports")
 public class ReportController {
 

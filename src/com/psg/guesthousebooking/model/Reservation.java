@@ -20,16 +20,16 @@ public class Reservation {
 	
 	private Date bookedFrom; //Expected check in date
 	private Date bookedTo; //Expected check out date
-	private Time fromTime;
-	private Time toTime;
+	private Time fromTime; //Expected check in time
+	private Time toTime; //Expected checkout time
 	private String guestName; //Guest Name
 	private int guestId = 0; //Will be updated only during allotment by checking the mobile number and the guest name
- 	private Date reservationDate; //Booking date or date on which reservation was requested
+ 	private Date reservationDate; //Booking date or date on which reservation was requested - Auto
 	private int reservationId; //Automatically generated reservation id
-	private ReservationStatus status; //Reserved, cancelled, confirmed
-	private String bookedBy;
-	private String approvedBy;
-	private int roomId;
+	private ReservationStatus status; //Reserved, cancelled, confirmed, denied, checkedout
+	private String bookedBy; //Requestor name
+	private String approvedBy; //Operator name
+	private int roomId; //Room id : > 0 is allocated, -1 if otherwise
 
 	public Reservation()
 	{
@@ -92,6 +92,10 @@ public class Reservation {
 		this.status = status;
 	}
 
+	/*
+	 * Setter methods are required for JAXB to marshal and unmarshal the objects. To achieve abstraction, have made the 
+	 * setters private wherever appropriate
+	 */
 	private void setBookedFrom(Date bookedFrom) {
 		this.bookedFrom = bookedFrom;
 	}
@@ -138,10 +142,6 @@ public class Reservation {
 		return guestId;
 	}
 
-//	@XmlElement
-//	public String getFromTime() {
-//		return fromTime.toString();
-//	}
 	
 	@XmlElement
 	public Time getFromTime() {
@@ -151,11 +151,6 @@ public class Reservation {
 	public void setFromTime(Time fromTime) {
 		this.fromTime = fromTime;
 	}
-
-//	@XmlElement
-//	public String getToTime() {
-//		return toTime.toString();
-//	}
 	
 	@XmlElement
 	public Time getToTime() {
